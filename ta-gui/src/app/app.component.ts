@@ -14,4 +14,10 @@ export class Aluno {
   nome: string;
   cpf: string;
   email: string;
+
+  constructor(inputname:string, inputcpf:string, inputemail:string) {
+    this.nome = inputname;
+    this.cpf = inputcpf;
+    this.email = inputemail;
+  }
 }
