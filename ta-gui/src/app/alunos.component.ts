@@ -13,7 +13,7 @@ import { AlunoService } from './aluno.service';
     constructor(private alunoService: AlunoService) {}
 
     aluno: Aluno = new Aluno();
-    alunos: Aluno[];
+    alunos!: Aluno[];
     cpfduplicado: boolean = false;
 
      criarAluno(a: Aluno): void {
