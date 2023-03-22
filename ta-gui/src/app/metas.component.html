@@ -10,7 +10,7 @@
     <td>{{a.nome}}</td>
     <td>{{a.cpf}}</td>
     <td>{{a.email}}</td>
-    <td class="meta"><input [ngModel]="a.metas.get('requisitos')" (ngModelChange)="a.metas.set('requisitos', $event); atualizarAluno(a)"></td>
-    <td class="meta"><input [ngModel]="a.metas.get('gerDeConfiguracao')" (ngModelChange)="a.metas.set('gerDeConfiguracao', $event); atualizarAluno(a)"></td>
+    <td class="meta"><input [ngModel]="a.metas['Requisitos']" (ngModelChange)="a.metas['Requisitos'] = $event; atualizarAluno(a)"></td>
+    <td class="meta"><input [ngModel]="a.metas['gerDeConfiguracao']" (ngModelChange)="a.metas['gerDeConfiguracao'] = $event; atualizarAluno(a)"></td>
  </tr>
  </table>

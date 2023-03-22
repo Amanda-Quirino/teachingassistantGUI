@@ -2,7 +2,7 @@ export class Aluno {
   nome!: string;
   cpf!: string;
   email!: string;
-  metas!: Object;
+  metas!: Record<string,string>;
 
   constructor() {
     this.clean();
@@ -12,7 +12,7 @@ export class Aluno {
     this.nome = "";
     this.cpf = "";
     this.email = "";
-    this.metas = new Object();
+    this.metas = {};
   }
 
   clone(): Aluno {
@@ -28,8 +28,8 @@ export class Aluno {
     this.copyMetasFrom(from.metas);
   }
 
-  copyMetasFrom(from: Object): void {
-    this.metas = new Object;
+  copyMetasFrom(from: Record<string, string>): void {
+    this.metas = {};
     for (let key in from) {
       this.metas[key] = from[key];
     }
