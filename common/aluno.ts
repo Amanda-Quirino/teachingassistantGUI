@@ -2,7 +2,7 @@ export class Aluno {
   nome!: string;
   cpf!: string;
   email!: string;
-  metas!: Map<string,string>;
+  metas!: Object;
 
   constructor() {
     this.clean();
@@ -12,7 +12,7 @@ export class Aluno {
     this.nome = "";
     this.cpf = "";
     this.email = "";
-    this.metas = new Map<string,string>();
+    this.metas = new Object();
   }
 
   clone(): Aluno {
@@ -29,10 +29,10 @@ export class Aluno {
     this.copyMetasFrom(from.metas);
   }
 
-  copyMetasFrom(from: Map<string,string>): void {
-    this.metas = new Map<string,string>();
-    for (let key of from.keys()) {
-      this.metas.set(key, from.get(key)!);
+  copyMetasFrom(from: Object): void {
+    this.metas = new Object;
+    for (let key in from) {
+      this.metas[key] = from[key];
     }
   }
 }
