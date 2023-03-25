@@ -22,10 +22,24 @@ defineSupportCode(function ({ Given, When, Then }) {
         await samecpfs.then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(0));
     });
 
+    Given(/^I can see a student with CPF "(\d*)" in the students list$/, async (cpf) => {
+        await $("input[name='namebox']").sendKeys(<string> "Mari");
+        await $("input[name='cpfbox']").sendKeys(<string> cpf);
+        await $("button[name='adicionarAluno']").click();
+
+        var allalunos : ElementArrayFinder = element.all(by.name('alunolist'));
+        await allalunos.filter(elem => sameCPF(elem,cpf)).then
+                   (elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
+    });
+
     When(/^I try to register the student "([^\"]*)" with CPF "(\d*)"$/, async (name, cpf) => {
         await $("input[name='namebox']").sendKeys(<string> name);
         await $("input[name='cpfbox']").sendKeys(<string> cpf);
-        await element(by.buttonText('Adicionar')).click();
+        await $("button[name='adicionarAluno']").click();
+    });
+
+    When(/^I try to remove the student with CPF "(\d*)"$/, async (cpf) => {
+        await $(`button[name='${cpf}']`).click();
     });
 
     Then(/^I can see "([^\"]*)" with CPF "(\d*)" in the students list$/, async (name, cpf) => {
@@ -33,5 +47,12 @@ defineSupportCode(function ({ Given, When, Then }) {
         await allalunos.filter(elem => pAND(sameCPF(elem,cpf),sameName(elem,name))).then
                    (elems => expect(Promise.resolve(elems.length)).to.eventually.equal(1));
     });
+
+    // Then(/^I cannot see a student with CPF "(\d*)" in the students list$/, async (cpf) => {
+    //     var allcpfs : ElementArrayFinder = element.all(by.name('cpflist'));
+    //     var samecpfs = allcpfs.filter(elem =>
+    //                                   elem.getText().then(text => text === cpf));
+    //     await samecpfs.then(elems => expect(Promise.resolve(elems.length)).to.eventually.equal(0));
+    // });
 
 })
