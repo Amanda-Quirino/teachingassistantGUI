@@ -30,6 +30,18 @@ import { AlunoService } from './aluno.service';
               );
     } 
 
+    removerAluno(a: Aluno): void {
+      this.alunoService.remover(a)
+              .subscribe(
+                ar => {
+                  if (ar) {
+                    this.alunos.splice(this.alunos.findIndex(((aluno) => aluno == a)), 1);
+                  }
+                },
+                msg => {alert(msg.message);}
+              );
+    }
+
     onMove(): void {
        this.cpfduplicado = false;
     }

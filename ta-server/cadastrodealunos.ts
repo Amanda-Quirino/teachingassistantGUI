@@ -23,6 +23,18 @@ export class CadastroDeAlunos {
      return result;
    }
 
+   remover(aluno: Aluno): Aluno {
+    var existe: number = this.alunos.findIndex(((alunoc) => alunoc == aluno));
+    var result: Aluno = aluno;
+    if (existe != -1) this.alunos.splice(existe, 1);
+    else result = null;
+    return result;
+   }
+
+   getAluno(cpf:string): Aluno {
+    return this.alunos.find((aluno) => aluno.cpf = cpf);
+   }
+
     getAlunos(): Aluno[] {
      return this.alunos;
    }
