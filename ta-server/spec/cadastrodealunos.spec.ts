@@ -41,6 +41,50 @@ describe("O cadastro de alunos", () => {
     expect(aluno.nome).toBe("Mariana");
   })
 
+  it("cadastra alunos corretamente", () => {
+    cadastrarAluno("Mariana", "");
+    var aluno: Aluno = new Aluno();
+
+    expect(cadastro.getAlunos().length).toBe(1);
+    aluno = cadastro.getAlunos()[0];
+    expect(aluno.nome).toBe("Mariana");
+    expect(aluno.cpf).toBe("");
+    expect(aluno.email).toBe("");
+    expect(Object.keys(aluno.metas).length).toBe(0);
+  })
+
+  it("cadastra alunos corretamente", () => {
+    cadastrarAluno("Mariana", "683");
+    var aluno: Aluno = new Aluno();
+    aluno.nome = "Mariana";
+    aluno.cpf = "683";
+    cadastro.remover(aluno);
+    cadastrarAluno("Pedro", "683");
+
+    expect(cadastro.getAlunos().length).toBe(1);
+    aluno = cadastro.getAlunos()[0];
+    expect(aluno.nome).toBe("Pedro");
+    expect(aluno.cpf).toBe("683");
+    expect(aluno.email).toBe("");
+    expect(Object.keys(aluno.metas).length).toBe(0);
+  })
+
+  it("recadastra aluno removido", () => {
+    cadastrarAluno("Mariana", "683");
+    var aluno: Aluno = new Aluno();
+    aluno.nome = "Mariana";
+    aluno.cpf = "683";
+    cadastro.remover(aluno);
+    expect(cadastro.getAlunos().length).toBe(0);
+    cadastrarAluno("Mariana", "683");
+
+    expect(cadastro.getAlunos().length).toBe(1);
+    aluno = cadastro.getAlunos()[0];
+    expect(aluno.nome).toBe("Mariana");
+    expect(aluno.cpf).toBe("683");
+    expect(aluno.email).toBe("");
+    expect(Object.keys(aluno.metas).length).toBe(0);
+  })
 })
 
 
