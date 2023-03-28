@@ -24,9 +24,9 @@ export class CadastroDeAlunos {
    }
 
    remover(aluno: Aluno): Aluno {
-    var existe: number = this.alunos.findIndex(((alunoc) => alunoc == aluno));
+    var existe: number = this.alunos.findIndex(((alunoc) => alunoc.cpf == aluno.cpf));
     var result: Aluno = aluno;
-    if (existe != -1) this.alunos.splice(existe, 1);
+    if (existe != -1) this.alunos.splice(existe-1, 1);
     else result = null;
     return result;
    }
