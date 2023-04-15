@@ -3,6 +3,7 @@ export class Aluno {
   cpf!: string;
   email!: string;
   metas!: Record<string,string>;
+  metasAuto!: Record<string,string>;
 
   constructor() {
     this.clean();
@@ -26,12 +27,20 @@ export class Aluno {
     this.cpf = from.cpf;
     this.email = from.email;
     this.copyMetasFrom(from.metas);
+    this.copyMetasAutoFrom(from.metasAuto);
   }
 
   copyMetasFrom(from: Record<string, string>): void {
     this.metas = {};
     for (let key in from) {
       this.metas[key] = from[key];
+    }
+  }
+
+  copyMetasAutoFrom(from: Record<string, string>): void {
+    this.metasAuto = {};
+    for (let key in from) {
+      this.metasAuto[key] = from[key];
     }
   }
 }

@@ -1,0 +1,20 @@
+<h2>
+   Auto-Avaliação
+</h2>
+
+<table>
+    <tr>
+       <th>Nome</th>
+       <th>CPF</th>
+       <th>e-mail</th>
+       <th class="nome-meta">Requisitos</th>
+       <th class="nome-meta">Gerência de Configuração</th>
+    </tr>
+    <tr *ngFor="let a of alunos">
+       <td>{{a.nome}}</td>
+       <td>{{a.cpf}}</td>
+       <td>{{a.email}}</td>
+       <td class="meta" name="Requisitos"><input [ngModel]="a.metasAuto['Requisitos']" (ngModelChange)="a.metasAuto['Requisitos'] = $event; atualizarAluno(a)"></td>
+       <td class="meta" name="gerDeConfiguracao"><input [ngModel]="a.metasAuto['gerDeConfiguracao']" (ngModelChange)="a.metasAuto['gerDeConfiguracao'] = $event; atualizarAluno(a)"></td>
+    </tr>
+</table>
